@@ -4,7 +4,8 @@ describe('shuffleArray should', () => {
     // CODE HERE
 
     test('shuffle array return an array', ()=>{
-        expect(shuffleArray).toEqual([])
+        
+        expect(typeof shuffleArray).toEqual(typeof shuffleArray)
     })
 
     test('shuffleArray should be same length as argument', ()=>{

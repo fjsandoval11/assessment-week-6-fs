@@ -1,5 +1,6 @@
 
 import { Builder, Capabilities, By } from "selenium-webdriver"
+import { convertToObject } from "typescript"
 
 require('chromedriver')
 
@@ -21,12 +22,24 @@ test('Title shows up when page loads', async () => {
 
 test('draw button displays id = "choices"',async()=> {
     const drawBtn = await driver.findElement(By.id('draw'))
+    await driver.findElement(By.id('draw')).click()
 
-    await driver.findElement(By.xpath(`//body/button/draw`)).click
+    const choices = await driver.findElement(By.id('choices'))
+    await driver.sleep(5000)
+    expect(choices.isDisplayed())
+
     
-    await driver.sleep(4000)
-    expect(By.xpath('//body/section/div/id="choices"')).toBeTruthy
-    
+})
+
+test(`check add to duo button shows up`, async()=>{
+    const drawBtn = await driver.findElement(By.id('draw'))
+    await driver.findElement(By.id('draw')).click()
+
+    await driver.sleep(5000)
+
+    const botBtn = await driver.findElement(By.className('bot-btn'))
+    // const botDisplayed = await botBtn.isDisplayed()
+    expect(botBtn.isDisplayed())
 })
 
 // test("some string describing the test", async () => {
